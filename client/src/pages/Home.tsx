@@ -1,25 +1,71 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
+import { useState } from "react";
+import { ArrowUpRight, CalendarDays, Check, Clock3, Instagram, MapPin, Menu, MessageCircle, Scissors, Star, Users, X } from "lucide-react";
 
-/**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
- */
+const logo = "/manus-storage/brothers-logo_c7c4f471.webp";
+const gallery = [
+  { src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=900&q=85", label: "Corte clássico" },
+  { src: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85", label: "Degradê preciso" },
+  { src: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=85", label: "Barba alinhada" },
+  { src: "https://images.unsplash.com/photo-1521490683712-35a5c3c3f8f0?auto=format&fit=crop&w=900&q=85", label: "Acabamento" },
+  { src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85", label: "Estilo Brothers" },
+  { src: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85", label: "Cuidado em cada detalhe" },
+];
+
+const services = [
+  { name: "Corte Brothers", desc: "Tesoura, máquina e acabamento preciso para o seu estilo.", price: "a partir de R$ 35" },
+  { name: "Barba completa", desc: "Toalha quente, desenho e finalização com produtos premium.", price: "a partir de R$ 30" },
+  { name: "Corte + barba", desc: "O combo completo para sair renovado da cadeira.", price: "a partir de R$ 55" },
+];
+
+const team = [
+  { name: "Rafael", role: "Barbeiro especialista", initial: "R" },
+  { name: "Maurício", role: "Barbeiro especialista", initial: "M" },
+  { name: "Antônio", role: "Barbeiro especialista", initial: "A" },
+];
+
 export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
-
+  const [menuOpen, setMenuOpen] = useState(false);
+  const whatsapp = "https://wa.me/5513996555524?text=Ol%C3%A1%2C%20quero%20agendar%20um%20hor%C3%A1rio%20na%20Brothers%20Barbershop";
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-[#0b0c0e] text-[#f4f1eb] selection:bg-[#d5ad62] selection:text-black">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0b0c0e]/85 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-10">
+          <a href="#inicio" className="flex items-center gap-3" aria-label="Brothers Barbershop início">
+            <img src={logo} alt="Logo Barbearia Brothers" className="h-11 w-11 rounded-full border border-[#d5ad62]/40 object-cover" />
+            <div className="leading-none"><span className="font-display text-lg tracking-[0.18em]">BROTHERS</span><span className="mt-1 block text-[9px] uppercase tracking-[0.32em] text-[#d5ad62]">Barbershop · Peruíbe</span></div>
+          </a>
+          <nav className="hidden items-center gap-8 text-xs uppercase tracking-[0.22em] text-white/65 md:flex">
+            <a className="transition hover:text-[#d5ad62]" href="#experiencia">Experiência</a><a className="transition hover:text-[#d5ad62]" href="#servicos">Serviços</a><a className="transition hover:text-[#d5ad62]" href="#galeria">Galeria</a><a className="transition hover:text-[#d5ad62]" href="#local">Onde estamos</a>
+          </nav>
+          <a href={whatsapp} target="_blank" rel="noreferrer" className="hidden rounded-full bg-[#d5ad62] px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-black transition hover:bg-[#edd08f] md:block">Agendar horário</a>
+          <button className="rounded-full border border-white/15 p-2 md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
+        </div>
+        {menuOpen && <div className="border-t border-white/10 bg-[#111315] px-5 py-5 md:hidden"><div className="flex flex-col gap-5 text-sm uppercase tracking-[0.18em] text-white/75"><a href="#experiencia" onClick={() => setMenuOpen(false)}>Experiência</a><a href="#servicos" onClick={() => setMenuOpen(false)}>Serviços</a><a href="#galeria" onClick={() => setMenuOpen(false)}>Galeria</a><a href={whatsapp} target="_blank" rel="noreferrer" className="text-[#d5ad62]">Agendar horário ↗</a></div></div>}
+      </header>
+
       <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+        <section id="inicio" className="relative flex min-h-[760px] items-end overflow-hidden border-b border-white/10 pt-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(213,173,98,.18),transparent_24%),linear-gradient(110deg,#0b0c0e_5%,rgba(11,12,14,.72) 48%,rgba(11,12,14,.23)),url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=2000&q=85')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c0e] via-transparent to-[#0b0c0e]/20" />
+          <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 pb-20 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:pb-28">
+            <div className="max-w-3xl"><p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#d5ad62]"><span className="h-px w-10 bg-[#d5ad62]" /> Centro de Peruíbe · desde 2016</p><h1 className="font-display text-6xl uppercase leading-[.88] tracking-[-.03em] sm:text-8xl lg:text-[9.2rem]">A barbearia<br /><span className="text-[#d5ad62]">do homem</span><br />moderno.</h1><p className="mt-8 max-w-md text-base leading-relaxed text-white/65">Mais do que um corte. Uma experiência de presença, estilo e cuidado para quem sabe que os detalhes fazem a diferença.</p><div className="mt-10 flex flex-wrap gap-4"><a href={whatsapp} target="_blank" rel="noreferrer" className="group flex items-center gap-3 rounded-full bg-[#d5ad62] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-black transition hover:bg-[#edd08f]">Reservar minha cadeira <ArrowUpRight size={16} className="transition group-hover:translate-x-1 group-hover:-translate-y-1" /></a><a href="#galeria" className="flex items-center gap-3 rounded-full border border-white/20 px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:border-[#d5ad62] hover:text-[#d5ad62]">Ver trabalhos</a></div></div>
+            <div className="hidden items-end justify-end lg:flex"><div className="w-60 border-l border-[#d5ad62]/50 pl-6"><div className="mb-8 flex items-center gap-2 text-[#d5ad62]"><Star size={15} fill="currentColor" /><Star size={15} fill="currentColor" /><Star size={15} fill="currentColor" /><Star size={15} fill="currentColor" /><Star size={15} fill="currentColor" /></div><p className="font-display text-3xl uppercase leading-none">“O corte certo<br />muda o dia.”</p><p className="mt-4 text-xs uppercase tracking-[0.2em] text-white/45">Brothers Barbershop</p></div></div>
+          </div>
+          <div className="absolute bottom-7 right-6 hidden items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-white/40 lg:flex"><span className="h-px w-16 bg-white/20" /> role para explorar</div>
+        </section>
+
+        <section id="experiencia" className="mx-auto max-w-7xl px-5 py-24 lg:px-10 lg:py-32"><div className="grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24"><div><p className="eyebrow">01 / A experiência</p><h2 className="section-title mt-5">Precisão<br /><i>sem pressa.</i></h2></div><div className="max-w-2xl"><p className="text-xl leading-relaxed text-white/80">Há mais de 7 anos no Centro de Peruíbe, a Brothers nasceu para atender o homem que valoriza um bom corte, uma conversa leve e um serviço feito com atenção.</p><div className="mt-12 grid gap-6 border-t border-white/10 pt-8 sm:grid-cols-3"><div><Scissors className="mb-5 text-[#d5ad62]" size={22} /><p className="font-display text-2xl uppercase">Técnica</p><p className="mt-2 text-sm leading-relaxed text-white/45">Cortes atuais e clássicos executados com precisão.</p></div><div><Clock3 className="mb-5 text-[#d5ad62]" size={22} /><p className="font-display text-2xl uppercase">No seu tempo</p><p className="mt-2 text-sm leading-relaxed text-white/45">Atendimento de segunda a sábado, das 9h às 18h.</p></div><div><Users className="mb-5 text-[#d5ad62]" size={22} /><p className="font-display text-2xl uppercase">Seu estilo</p><p className="mt-2 text-sm leading-relaxed text-white/45">Uma equipe pronta para entender o que combina com você.</p></div></div></div></div></section>
+
+        <section id="servicos" className="bg-[#111315] px-5 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-7xl"><div className="flex flex-col justify-between gap-5 border-b border-white/10 pb-8 sm:flex-row sm:items-end"><div><p className="eyebrow">02 / Serviços</p><h2 className="section-title mt-5">Escolha seu<br /><i>ritual.</i></h2></div><p className="max-w-xs text-sm leading-relaxed text-white/45">Do clássico ao contemporâneo. O resultado é sempre um só: você saindo melhor do que entrou.</p></div><div className="mt-10 divide-y divide-white/10">{services.map((service, index) => <div key={service.name} className="group grid gap-4 py-8 transition hover:bg-white/[.02] sm:grid-cols-[80px_1fr_auto] sm:items-center"><span className="font-display text-3xl text-[#d5ad62]/60">0{index + 1}</span><div><h3 className="font-display text-3xl uppercase tracking-wide transition group-hover:text-[#d5ad62]">{service.name}</h3><p className="mt-2 max-w-md text-sm text-white/45">{service.desc}</p></div><p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#d5ad62]">{service.price}</p></div>)}</div><div className="mt-10 flex flex-wrap items-center justify-between gap-5 rounded-2xl border border-[#d5ad62]/20 bg-[#d5ad62]/[.06] p-6"><div className="flex items-center gap-4"><div className="rounded-full bg-[#d5ad62] p-3 text-black"><CalendarDays size={18} /></div><div><p className="font-semibold">Quer garantir seu horário?</p><p className="text-sm text-white/45">Chame a Brothers no WhatsApp.</p></div></div><a href={whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-[#d5ad62]">Agendar agora <ArrowUpRight size={16} /></a></div></div></section>
+
+        <section id="galeria" className="mx-auto max-w-7xl px-5 py-24 lg:px-10 lg:py-32"><div className="mb-10 flex items-end justify-between"><div><p className="eyebrow">03 / Nosso trabalho</p><h2 className="section-title mt-5">Feito para<br /><i>ser visto.</i></h2></div><a href="https://www.instagram.com/barbershop_peruibe" target="_blank" rel="noreferrer" className="hidden items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#d5ad62] sm:flex">Instagram <Instagram size={16} /></a></div><div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4">{gallery.map((item, index) => <a href="https://www.instagram.com/barbershop_peruibe" target="_blank" rel="noreferrer" key={item.label} className={`group relative overflow-hidden bg-[#1a1c1e] ${index === 1 || index === 4 ? "aspect-[4/5]" : "aspect-square"}`}><img src={item.src} alt={item.label} loading="lazy" className="h-full w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" /><span className="absolute bottom-4 left-4 text-xs uppercase tracking-[0.16em] text-white/90">{item.label}</span></a>)}</div><div className="mt-6 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.16em] text-white/40 sm:hidden"><Instagram size={15} /> @barbershop_peruibe</div></section>
+
+        <section className="border-y border-white/10 bg-[#111315] px-5 py-24 lg:px-10 lg:py-28"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="eyebrow">04 / A equipe</p><h2 className="section-title mt-5">Quem faz<br /><i>acontecer.</i></h2></div><div className="grid gap-4 sm:grid-cols-3">{team.map((member) => <div key={member.name} className="group rounded-2xl border border-white/10 bg-white/[.03] p-5 transition hover:-translate-y-1 hover:border-[#d5ad62]/50"><div className="mb-14 flex h-16 w-16 items-center justify-center rounded-full border border-[#d5ad62]/50 bg-[#d5ad62]/10 font-display text-3xl text-[#d5ad62]">{member.initial}</div><h3 className="font-display text-2xl uppercase">{member.name}</h3><p className="mt-1 text-xs uppercase tracking-[0.12em] text-white/40">{member.role}</p></div>)}</div></div></div></section>
+
+        <section id="local" className="relative overflow-hidden px-5 py-24 lg:px-10 lg:py-32"><div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#d5ad62 1px, transparent 1px)", backgroundSize: "22px 22px" }} /><div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_.8fr] lg:items-end"><div><p className="eyebrow">05 / Onde estamos</p><h2 className="section-title mt-5">No coração<br /><i>de Peruíbe.</i></h2><p className="mt-8 max-w-md text-base leading-relaxed text-white/55">Estamos no Centro de Peruíbe, prontos para receber você de segunda a sábado, das 9h às 18h.</p><a href="https://www.google.com.br/maps/place/Barbearia+Peru%C3%ADbe+%7C+Brothers+Barbershop/@-24.3204723,-47.0080806,17z" target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/20 px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] transition hover:border-[#d5ad62] hover:text-[#d5ad62]"><MapPin size={16} /> Abrir no Maps <ArrowUpRight size={15} /></a></div><div className="rounded-2xl border border-[#d5ad62]/30 bg-[#111315]/90 p-7"><p className="text-xs uppercase tracking-[0.2em] text-[#d5ad62]">Horário de atendimento</p><div className="mt-6 flex items-center justify-between border-b border-white/10 pb-5"><span className="text-white/60">Segunda a sábado</span><span className="font-display text-2xl">09 — 18H</span></div><div className="mt-5 flex items-center gap-3 text-sm text-white/55"><Check size={17} className="text-[#d5ad62]" /> Atendimento por ordem de chegada ou agendamento</div><a href={whatsapp} target="_blank" rel="noreferrer" className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#d5ad62] py-4 text-xs font-bold uppercase tracking-[0.16em] text-black transition hover:bg-[#edd08f]"><MessageCircle size={17} /> Falar no WhatsApp</a></div></div></section>
       </main>
+
+      <footer className="border-t border-white/10 px-5 py-10 lg:px-10"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 sm:flex-row sm:items-center"><div className="flex items-center gap-3"><img src={logo} alt="" className="h-10 w-10 rounded-full" /><div><p className="font-display tracking-[0.18em]">BROTHERS</p><p className="text-[9px] uppercase tracking-[0.25em] text-white/35">Barbershop Peruíbe</p></div></div><div className="flex flex-wrap gap-5 text-xs uppercase tracking-[0.13em] text-white/40"><a href="https://www.instagram.com/barbershop_peruibe" target="_blank" rel="noreferrer" className="transition hover:text-[#d5ad62]">Instagram</a><a href={whatsapp} target="_blank" rel="noreferrer" className="transition hover:text-[#d5ad62]">WhatsApp</a><span>© {new Date().getFullYear()} Brothers</span></div></div></footer>
     </div>
   );
 }
